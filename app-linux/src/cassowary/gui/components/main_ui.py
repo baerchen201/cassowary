@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.btn_scanapp.clicked.connect(self.populate_applications)
         self.btn_reconnect.clicked.connect(lambda: self.__reconnect(force_reconnect=True))
         self.btn_autofill.clicked.connect(self.__fill_basic_info)
-        self.btn_killfreerdp.clicked.connect(lambda: os.popen("killall xfreerdp & killall wlfreerdp"))
+        self.btn_killfreerdp.clicked.connect(lambda: os.popen("killall xfreerdp3 & killall wlfreerdp3"))
         self.btn_fullrdp.clicked.connect(full_rdp)
         self.btn_restart.clicked.connect(lambda: os.popen("virsh reset {}".format(cfgvars.config["vm_name"])))
         self.btn_vmoff.clicked.connect(lambda: os.popen("virsh poweroff {}".format(cfgvars.config["vm_name"])))

@@ -11,9 +11,11 @@ import libvirt
 from cassowary.gui.components.vmstart import StartDg
 
 logger = get_logger(__name__)
-wake_base_cmd = 'xfreerdp /d:"{domain}" /u:"{user}" /p:"{passd}" /v:"{ip}" +clipboard /a:drive,root,{share_root} ' \
-                '+decorations /cert-ignore /sound /scale:100 /dynamic-resolution /span  ' \
-                '/wm-class:"cassowaryApp-echo" /app:"{app}"'
+wake_base_cmd = (
+    'xfreerdp3 -d "{domain}" -u "{user}" -p "{passd}" -v "{ip}" -clipboard -drive root,{share_root} '
+    "-decorations -cert ignore -sound -scale 100 -dynamic-resolution -span  "
+    '-wm-class:"cassowaryApp-echo" -app "program:{app}"'
+)
 
 
 def randomstr(leng=4):
@@ -21,7 +23,7 @@ def randomstr(leng=4):
 
 
 def warn_dependencies():
-    required_bins = ["xfreerdp", "update-desktop-database", "mount", "virsh", "pkexec"]
+    required_bins = ["xfreerdp3", "update-desktop-database", "mount", "virsh", "pkexec"]
     for depend in required_bins:
         path = os.popen("which " + depend).read().strip()
         if path == "":
@@ -235,9 +237,11 @@ def create_reply(message, data, status):
 
 
 def full_rdp():
-    command = '{rdc} /d:"{domain}" /u:"{user}" /p:"{passd}" /v:{ip} /a:drive,root,{share_root} +auto-reconnect ' \
-              '+clipboard /cert-ignore /audio-mode:1 /scale:{scale} /wm-class:"cassowaryApp-FULLSESSION" ' \
-              '/dynamic-resolution /{mflag} {rdflag} 1> /dev/null 2>&1 &'
+    command = (
+        '{rdc} /d: "{domain}" /u: "{user}" /p: "{passd}" /v: {ip} /a: drive,root,{share_root} +auto-reconnect '
+        '+clipboard /cert ignore /audio-mode:1 /scale: {scale} /wm-class:"cassowaryApp-FULLSESSION" '
+        "/dynamic-resolution /{mflag} {rdflag} 1> /dev/null 2>&1 &"
+    )
     multimon_enable = int(os.environ.get("RDP_MULTIMON", cfgvars.config["rdp_multimon"]))
     cmd_final = command.format(
         rdflag=cfgvars.config["rdp_flags"],

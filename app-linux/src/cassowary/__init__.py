@@ -111,10 +111,12 @@ def main():
                         Usage   :
                                 cassowary -c path-map -- /home/user/document/personal.docx
     """
-    BASE_RDP_CMD = '{rdc} /d:"{domain}" /u:"{user}" /p:"{passd}" /v:{ip} +clipboard /a:drive,root,{share_root} ' \
-                   '+decorations /cert-ignore /sound /scale:{scale} /dynamic-resolution /{mflag} {rdflag} ' \
-                   '/wm-class:"{wmclass}" ' \
-                   '/app:"{execu}" /app-icon:"{icon}" '
+    BASE_RDP_CMD = (
+        '{rdc} -d "{domain}" -u "{user}" -p "{passd}" -v {ip} -clipboard -drive root,{share_root} '
+        "-decorations -cert ignore -sound -scale {scale} -dynamic-resolution -{mflag} {rdflag} "
+        '-wm-class "{wmclass}" '
+        '-app "program:{execu}"'
+    )
     parser = argparse.ArgumentParser(description=about, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('-bc', '--background-client', dest='bgc',
                         help='Create a client which listens for host forwarded requests and replies them',

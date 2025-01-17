@@ -1086,12 +1086,12 @@ App like Windows 10's Photoviewer will generate a lot of glitches.</string>
            </property>
            <item>
             <property name="text">
-             <string>xfreerdp</string>
+             <string>xfreerdp3</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>wlfreerdp</string>
+             <string>wlfreerdp3</string>
             </property>
            </item>
           </widget>
@@ -1106,12 +1106,12 @@ App like Windows 10's Photoviewer will generate a lot of glitches.</string>
            </property>
            <item>
             <property name="text">
-             <string>xfreerdp</string>
+             <string>xfreerdp3</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>wlfreerdp</string>
+             <string>wlfreerdp3</string>
             </property>
            </item>
           </widget>

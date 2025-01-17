@@ -63,9 +63,11 @@ if __name__ == "__main__":
                         Usage   :
                                 casualrdh_linux -a path-map -- /home/user/document/personal.docx
     """
-    BASE_RDP_CMD = 'xfreerdp {rdflag} /d:"{domain}" /u:"{user}" /p:"{passd}" /v:{ip} +auto-reconnect +clipboard ' \
-                   '+home-drive -wallpaper /scale:{scale} /dynamic-resolution /{mflag} /wm-class:"{wmclass}" ' \
-                   '/app:"{execu}" /app-icon:"{icon}"'
+    BASE_RDP_CMD = (
+        'xfreerdp3 {rdflag} -d "{domain}" -u "{user}" -p "{passd}" -v {ip} -auto-reconnect -clipboard '
+        '-home-drive -scale {scale} -dynamic-resolution -{mflag} -wm-class "{wmclass}" '
+        '-app "program:{execu}"'
+    )
     parser = argparse.ArgumentParser(description=about, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('-bc', '--background-client', dest='server',
                         help='Create a client which listens for host forwarded requests and replies them',
